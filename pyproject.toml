@@ -1,0 +1,9 @@
+[project]
+name = "kitsuna"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.5"
+dependencies = [
+    "sqlmesh[web]>=0.180.0",
+]
