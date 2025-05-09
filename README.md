@@ -52,14 +52,15 @@ This project is an attempt to stitch together a set of solid and reliable open-s
 - No k8s, so a small data team can be self-sufficient .
 - Cheap path to production and scaling.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Tech Choices
 
-- Extraction. [dlt]()
-- Transform. [SQLMesh]()
-- BI / data viz (planned). [Metabase]()
-- Deployment (planned). [kamal]()
+- _Extract_ (planned): [dlt](https://dlthub.com/)
+- Transform: [SQLMesh](https://sqlmesh.readthedocs.io/en/stable/)
+- Data Storage: [DuckDB](https://duckdb.org/)
+- _BI / data viz_ (planned): [Metabase](https://www.metabase.com/)
+- _Deployment_ (planned): [kamal](https://kamal-deploy.org/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
