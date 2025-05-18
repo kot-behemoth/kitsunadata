@@ -74,7 +74,16 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-TODO
+1. Clone this repository
+2. Download the DuckDB driver for Metabase:
+   ```bash
+   make download-duckdb-driver
+   ```
+3. Start the services:
+   ```bash
+   docker-compose up -d
+   ```
+4. Access Metabase at http://localhost:3000
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
