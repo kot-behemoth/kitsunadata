@@ -1,0 +1,27 @@
+FROM ghcr.io/astral-sh/uv:latest
+
+# Install DuckDB CLI and other utilities
+RUN apt-get update && apt-get install -y \
+    wget \                                                                                                                                                                                                    curl \                                                                                                                                                                                                    vim \                                                                                                                                                                                                     && rm -rf /var/lib/apt/lists/*
+    curl \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli-linux-amd64.zip \
+    && unzip duckdb_cli-linux-amd64.zip \
+    && mv duckdb /usr/local/bin/ \
+    && rm duckdb_cli-linux-amd64.zip
+
+WORKDIR /app
+
+# Install dependencies
+COPY pyproject.toml uv.lock ./
+RUN uv pip install -e .
+
+# Copy application code
+COPY scripts/ ./scripts/
+
+# Command to run SQLMesh
+# CMD ["sqlmesh", "run", "--start-from", "beginning"]
+# Command to run the container continuosly
+CMD ["tail", "-f", "/dev/null"]

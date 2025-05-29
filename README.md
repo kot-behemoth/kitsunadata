@@ -93,12 +93,69 @@ TODO
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Deployment
+
+### Deploying to DigitalOcean with Dokku
+
+This project can be deployed to DigitalOcean using Dokku with the following architecture:
+
+1. **Metabase Container**:
+   - Dedicated hostname (e.g., metabase.yourdomain.com)
+   - Access to mounted DuckDB volume
+
+2. **dlt + SQLMesh Container**:
+   - Combined container for data processing
+   - Access to the same DuckDB volume
+
+3. **Shared Storage**:
+   - DigitalOcean Volume for persistent DuckDB storage
+
+#### Deployment Steps
+
+1. **Create a Dokku-enabled droplet on DigitalOcean**a
+
+  Dokku docs: https://dokku.com/docs/getting-started/install/digitalocean.
+
+2. **Deploy using `app.json` configuration**:
+
+   ```bash
+   # Clone the repository on your local machine
+   git clone https://github.com/yourusername/kitsuna-data.git
+   cd kitsuna-data
+   
+   # Add Dokku remote
+   git remote add dokku dokku@your-droplet-ip:kitsuna-data
+   
+   # Push to Dokku - this will use the .do/app.yaml configuration
+   git push dokku main
+   ```
+
+   Dokku will automatically:
+   - Create the apps defined in `app.json` 
+   - Set up the specified resources
+   - Configure the mounts for shared storage
+   - Set up the domains
+
+4. **Set up SSL (recommended)**:
+
+   ```bash
+   dokku letsencrypt:enable metabase
+   ```
+
+This deployment approach gives you:
+
+- Separate containers for Metabase and data processing
+- Shared persistent storage for DuckDB
+- Simple deployment through Dokku
+- Custom domain for Metabase
+
 ## Roadmap
 
 - [x] Add SQLMesh
 - [x] Add MCP for DuckDB
 - [ ] Add dlt
     - [ ] Implement as an example: [Exploring StarCraft 2 data with Airflow, DuckDB and Streamlit \| by Volker Janz \| Data Engineer Things](https://blog.det.life/exploring-starcraft-2-data-with-airflow-duckdb-and-streamlit-7c0ad79f9ca6)
+- [ ] Add Dokku deployment configuration
 - [ ] Add Kamal for prod deployment
     - [ ] Create a Hetzner box for a public demo
 - [ ] Add installation docs
