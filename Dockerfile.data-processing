@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:latest
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm
 
 # Install DuckDB CLI and other utilities
 RUN apt-get update && apt-get install -y \
@@ -16,7 +16,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY pyproject.toml uv.lock ./
-RUN uv pip install -e .
+RUN uv sync
 
 # Copy application code
 COPY scripts/ ./scripts/
