@@ -155,9 +155,8 @@ This deployment approach gives you:
 - [x] Add MCP for DuckDB
 - [ ] Add dlt
     - [ ] Implement as an example: [Exploring StarCraft 2 data with Airflow, DuckDB and Streamlit \| by Volker Janz \| Data Engineer Things](https://blog.det.life/exploring-starcraft-2-data-with-airflow-duckdb-and-streamlit-7c0ad79f9ca6)
-- [ ] Add Dokku deployment configuration
-- [ ] Add Kamal for prod deployment
-    - [ ] Create a Hetzner box for a public demo
+- [ ] Add CapRover deployment configuration
+    - [ ] Create a DigitalOcean box for a public demo
 - [ ] Add installation docs
 - [ ] Add usage docs
 - [ ] Add Aider docs
