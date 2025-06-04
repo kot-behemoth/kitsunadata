@@ -2,7 +2,7 @@ FROM ghcr.io/astral-sh/uv:latest
 
 # Install DuckDB CLI and other utilities
 RUN apt-get update && apt-get install -y \
-    wget \                                                                                                                                                                                                    curl \                                                                                                                                                                                                    vim \                                                                                                                                                                                                     && rm -rf /var/lib/apt/lists/*
+    wget \
     curl \
     vim \
     && rm -rf /var/lib/apt/lists/*
