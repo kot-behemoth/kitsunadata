@@ -1,6 +1,8 @@
 services:
   metabase:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.metabase
     ports:
       - "3000:3000"
     environment:
@@ -8,3 +10,11 @@ services:
       - MB_DB_FILE=/metabase-data/metabase.db
     volumes:
       - ./metabase-data:/metabase-data
+      - ./db:/app/db
+
+  data-processing:
+    build:
+      context: .
+      dockerfile: Dockerfile.data-processing
+    volumes:
+      - ./db:/app/db

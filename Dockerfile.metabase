@@ -5,7 +5,3 @@ RUN mkdir -p /plugins
 
 # Copy the DuckDB driver from the local drivers directory to the default plugins directory
 COPY drivers/duckdb.metabase-driver.jar /plugins/
-
-# Configure to use the mounted volume
-ENV MB_DB_TYPE=h2
-ENV MB_DB_FILE=/duckdb-data/metabase.db
