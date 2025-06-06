@@ -1,5 +1,8 @@
 FROM metabase/metabase:latest
 
+ENV MB_DB_TYPE=h2
+ENV MB_DB_FILE=/metabase-data/metabase.db
+
 # Create plugins directory if it doesn't exist
 RUN mkdir -p /plugins
 
