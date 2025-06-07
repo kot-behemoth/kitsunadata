@@ -5,7 +5,7 @@ gateways:
       # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connections
       # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/duckdb/#connection-options
       type: duckdb
-      database: db.db
+      database: ../db/db.db
       # concurrent_tasks: 1
       # register_comments: True
       # pre_ping: False

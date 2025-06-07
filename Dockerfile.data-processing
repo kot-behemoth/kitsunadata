@@ -18,8 +18,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 RUN uv sync
 
-# Copy application code
-COPY scripts/ ./scripts/
+COPY sqlmesh/ ./sqlmesh/
 
 # Command to run SQLMesh
 # CMD ["sqlmesh", "run", "--start-from", "beginning"]
