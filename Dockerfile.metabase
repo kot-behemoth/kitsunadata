@@ -10,6 +10,7 @@ RUN apk add --no-cache libstdc++ curl
 # Create plugins directory if it doesn't exist
 RUN mkdir -p /plugins
 
+# chown 2000:2000 is identical to metabase:metabase
 RUN curl -L -o /plugins/duckdb.metabase-driver.jar https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/${DUCKDB_DRIVER_VERSION}/duckdb.metabase-driver.jar && \
   chmod 644 /plugins/duckdb.metabase-driver.jar && \
-  chown metabase:metabase /plugins/duckdb.metabase-driver.jar
+  chown 2000:2000 /plugins/duckdb.metabase-driver.jar
