@@ -8,4 +8,5 @@ ENV DUCKDB_DRIVER_VERSION="0.3.0"
 RUN mkdir -p /plugins
 
 RUN curl -L -o /plugins/duckdb.metabase-driver.jar https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/${DUCKDB_DRIVER_VERSION}/duckdb.metabase-driver.jar && \
-  chmod 644 /plugins/duckdb.metabase-driver.jar
+  chmod 644 /plugins/duckdb.metabase-driver.jar && \
+  chown metabase:metabase /plugins/duckdb.metabase-driver.jar
