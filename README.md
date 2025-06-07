@@ -40,6 +40,9 @@
 
 ## About The Project
 
+> [!CAUTION]
+> The project is very much in the pre-alpha stage. This is more of an experiment and is not meant for produciton workloads.
+
 This is a concept for what a Rails-inspired small data platform for startups and SMEs could look like. After using a variety of end-to-end solutions like DOMO, Keboola, Mozart Data and others, I keep wishing there was something that would do the 80% of ELT + BI out-of-the-box, without the price surprises.
 
 This project is an attempt to stitch together a set of solid and reliable open-source tools that combine into a lean platform where one data engineer can own the entire lifecycle. From ELT, to data modelling, to deploying and scaling in production.
