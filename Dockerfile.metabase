@@ -2,9 +2,10 @@ FROM metabase/metabase:latest
 
 ENV MB_DB_TYPE=h2
 ENV MB_DB_FILE=/metabase-data/metabase.db
+ENV DUCKDB_DRIVER_VERSION="0.3.0"
 
 # Create plugins directory if it doesn't exist
 RUN mkdir -p /plugins
 
-# Copy the DuckDB driver from the local drivers directory to the default plugins directory
-COPY drivers/duckdb.metabase-driver.jar /plugins/
+RUN curl -L -o /plugins/duckdb.metabase-driver.jar https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/${DUCKDB_DRIVER_VERSION}/duckdb.metabase-driver.jar && \
+  chmod 644 /plugins/duckdb.metabase-driver.jar
