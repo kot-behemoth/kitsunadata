@@ -1,6 +1,6 @@
-# FROM ghcr.io/astral-sh/uv:python3.12-bookworm
-FROM python:3.12-slim-bookworm
-RUN pip install uv
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm
+# FROM python:3.12-slim-bookworm
+# RUN pip install uv
 
 # Install DuckDB CLI and other utilities
 RUN apt-get update && apt-get install -y \
