@@ -178,3 +178,4 @@ cython_debug/
 .aider*
 /metabase-data/metabase.db/*.db
 /drivers/duckdb.metabase-driver.jar
+/metabase-data/
