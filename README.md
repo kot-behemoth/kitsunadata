@@ -7,7 +7,7 @@
   <h3 align="center">Kitsuna Data</h3>
 
   <p align="center">
-    The one person data and BI platform
+    Self-hosted one-person data platform
     <br />
     <br />
   </p>
@@ -21,7 +21,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#goals">Goals</a></li>
-        <li><a href="#tech-choices">Tech Choices</a></li>
+        <li><a href="#tech-stack">Tech Stack</a></li>
       </ul>
     </li>
     <li>
@@ -55,13 +55,13 @@ This project is an attempt to stitch together a set of solid and reliable open-s
 - No k8s, so a small data team can be self-sufficient .
 - Cheap path to production and scaling.
 
-### Tech Choices
+### Tech Stack
 
 - _Extract_ (planned): [dlt](https://dlthub.com/)
 - Transform: [SQLMesh](https://sqlmesh.readthedocs.io/en/stable/)
 - Data Storage: [DuckDB](https://duckdb.org/)
-- _BI / data viz_ (planned): [Metabase](https://www.metabase.com/)
-- _Deployment_ (planned): [kamal](https://kamal-deploy.org/)
+- BI / data viz: [Metabase](https://www.metabase.com/)
+- Deployment: [Dokku](https://dokku.com/docs/getting-started/install/digitalocean.)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,7 +158,7 @@ This deployment approach gives you:
 - [x] Add MCP for DuckDB
 - [ ] Add dlt
     - [ ] Implement as an example: [Exploring StarCraft 2 data with Airflow, DuckDB and Streamlit \| by Volker Janz \| Data Engineer Things](https://blog.det.life/exploring-starcraft-2-data-with-airflow-duckdb-and-streamlit-7c0ad79f9ca6)
-- [ ] Add CapRover deployment configuration
+- [x] Add Dokku deployment configuration
     - [ ] Create a DigitalOcean box for a public demo
 - [ ] Add installation docs
 - [ ] Add usage docs
@@ -168,7 +168,7 @@ This deployment approach gives you:
 
 ## Contact
 
-Greg Goltsov - [@gregoltsov](https://x.com/gregoltsov), [gregoltsov.bsky.social](https://bsky.app/profile/gregoltsov.bsky.social) - greg@goltsov.info.
+Greg Goltsov - [@gregoltsov](https://x.com/gregoltsov), [gregoltsov.bsky.social](https://bsky.app/profile/gregoltsov.bsky.social).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,5 +178,6 @@ Here are some projects which inspired my thinking and this project:
 
 * [Modern Data Stack in a Box with DuckDB](https://duckdb.org/2022/10/12/modern-data-stack-in-a-box.html)
 * [MDS-in-a-box: Monte Carlo simulation of the NBA season](https://github.com/matsonj/nba-monte-carlo)
+* [Exploring StarCraft 2 data with Airflow, DuckDB and Streamlit](https://blog.det.life/exploring-starcraft-2-data-with-airflow-duckdb-and-streamlit-7c0ad79f9ca6)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
