@@ -15,7 +15,6 @@ gateways:
       # connector_config: 
       # token: 
 
-
 default_gateway: duckdb
 
 model_defaults:
