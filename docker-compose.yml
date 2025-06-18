@@ -12,9 +12,9 @@ services:
       - ./metabase-data:/metabase-data
       - ./db:/app/db
 
-  data-processing:
+  elt:
     build:
       context: .
-      dockerfile: Dockerfile.data-processing
+      dockerfile: Dockerfile.elt
     volumes:
       - ./db:/app/db
