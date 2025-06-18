@@ -1,0 +1,31 @@
+{
+  "name": "metabase",
+  "domains": ["metabase.kitsunadata.com"],
+  "addons": [
+    "letsencrypt"
+  ],
+  "builder": {
+    "dockerfile": "Dockerfile.metabase"
+  },
+  "ports": [
+    {
+      "scheme": "http",
+      "host": 80,
+      "container": 3000
+    }
+  ],
+  "mounts": [
+    {
+      "host": "/mnt/shared_volume/metabase-data",
+      "container": "/metabase-data"
+    },
+    {
+      "host": "/mnt/shared_volume/db",
+      "container": "/app/db"
+    }
+  ],
+  "config": {
+    "MB_DB_TYPE": "h2",
+    "MB_DB_FILE": "/metabase-data/metabase.db"
+  }
+}

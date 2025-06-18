@@ -1,0 +1,13 @@
+{
+  "name": "data-processing",
+  "domains": ["data-processing.kitsunadata.com"],
+  "builder": {
+    "dockerfile": "Dockerfile.data-processing"
+  },
+  "mounts": [
+    {
+      "host": "/mnt/shared_volume/db",
+      "container": "/app/db"
+    }
+  ]
+}
