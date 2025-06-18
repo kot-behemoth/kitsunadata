@@ -1,8 +1,7 @@
 {
-  "name": "data-processing",
-  "domains": ["data-processing.kitsunadata.com"],
+  "name": "elt",
   "builder": {
-    "dockerfile": "Dockerfile.data-processing"
+    "dockerfile": "Dockerfile.elt"
   },
   "mounts": [
     {
