@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python312"]
+
+[phases.build]
+cmds = ["uv run mkdocs build"]
+
+[start]
+static = "dist"

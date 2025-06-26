@@ -1,0 +1,15 @@
+site_name: Kitsuna Data
+site_url: https://kitsunadata.com
+
+repo_url: https://github.com/kot-behemoth/kitsunadata
+repo_name: kot-behemoth/kitsunadata
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
