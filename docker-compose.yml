@@ -2,7 +2,7 @@ services:
   metabase:
     build:
       context: .
-      dockerfile: Dockerfile.metabase
+      dockerfile: docker/Dockerfile.metabase
     ports:
       - "3000:3000"
     environment:
@@ -15,6 +15,6 @@ services:
   elt:
     build:
       context: .
-      dockerfile: Dockerfile.elt
+      dockerfile: docker/Dockerfile.elt
     volumes:
       - ./db:/app/db
