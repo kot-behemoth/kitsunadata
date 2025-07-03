@@ -41,12 +41,11 @@
 
 ## About The Project
 
-> [!CAUTION]
-> The project is very much in the pre-alpha stage. This is more of an experiment and is not meant for produciton workloads.
-
 This is a concept for what a Rails-inspired small data platform for startups and SMEs could look like. After using a variety of end-to-end solutions like DOMO, Keboola, Mozart Data and others, I keep wishing there was something that would do the 80% of ELT + BI out-of-the-box, without the price surprises.
 
 This project is an attempt to stitch together a set of solid and reliable open-source tools that combine into a lean platform where one data engineer can own the entire lifecycle. From ELT, to data modelling, to deploying and scaling in production.
+
+![Kitsuna overview diagram](docs/docs/assets/Overview.png)
 
 ### Main Features
 
@@ -64,6 +63,9 @@ This project is an attempt to stitch together a set of solid and reliable open-s
 
 1. **🔍 End-to-end data lineage** - SQLMesh tracks transformations from raw to gold data. Understand exactly where metrics come from and debug easily.
 
+> [!CAUTION]
+> The project is very much in the pre-alpha stage. This is more of an experiment and is not meant for produciton workloads.
+
 ### Goals
 
 - Local-first development for the entire stack.
@@ -78,7 +80,7 @@ This project is an attempt to stitch together a set of solid and reliable open-s
 - Transform: [SQLMesh](https://sqlmesh.readthedocs.io/en/stable/)
 - Data Storage: [DuckDB](https://duckdb.org/)
 - BI / data viz: [Metabase](https://www.metabase.com/)
-- Deployment: [Dokku](https://dokku.com/docs/getting-started/install/digitalocean.)
+- Deployment: [Dokploy](https://dokploy.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,9 +117,7 @@ TODO
 
 ## Deployment
 
-### Deploying to DigitalOcean with Dokku
-
-This project can be deployed to DigitalOcean using Dokku with the following architecture:
+This project can be deployed to DigitalOcean/Hetzner/EC2 using Dokploy with the following architecture:
 
 1. **Metabase Container**:
    - Dedicated hostname (e.g., metabase.yourdomain.com)
@@ -128,46 +128,7 @@ This project can be deployed to DigitalOcean using Dokku with the following arch
    - Access to the same DuckDB volume
 
 3. **Shared Storage**:
-   - DigitalOcean Volume for persistent DuckDB storage
-
-#### Deployment Steps
-
-1. **Create a Dokku-enabled droplet on DigitalOcean**a
-
-  Dokku docs: https://dokku.com/docs/getting-started/install/digitalocean.
-
-2. **Deploy using `app.json` configuration**:
-
-   ```bash
-   # Clone the repository on your local machine
-   git clone https://github.com/yourusername/kitsuna-data.git
-   cd kitsuna-data
-   
-   # Add Dokku remote
-   git remote add dokku dokku@your-droplet-ip:kitsuna-data
-   
-   # Push to Dokku - this will use the .do/app.yaml configuration
-   git push dokku main
-   ```
-
-   Dokku will automatically:
-   - Create the apps defined in `app.json` 
-   - Set up the specified resources
-   - Configure the mounts for shared storage
-   - Set up the domains
-
-4. **Set up SSL (recommended)**:
-
-   ```bash
-   dokku letsencrypt:enable metabase
-   ```
-
-This deployment approach gives you:
-
-- Separate containers for Metabase and data processing
-- Shared persistent storage for DuckDB
-- Simple deployment through Dokku
-- Custom domain for Metabase
+   - Used for persistent DuckDB storage
 
 ## Roadmap
 
