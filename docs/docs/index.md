@@ -11,9 +11,7 @@ This is a concept for what a Rails-inspired small data platform for startups and
 
 This project is an attempt to stitch together a set of solid and reliable open-source tools that combine into a lean platform where one data engineer can own the entire lifecycle. From ELT, to data modelling, to deploying and scaling in production.
 
-!!! warning
-
-    The project is very much in the pre-alpha stage. This is more of an experiment and is not meant for produciton workloads.
+![Kitsuna overview diagram](assets/Overview.png)
 
 ### Main Features
 
@@ -30,6 +28,10 @@ This project is an attempt to stitch together a set of solid and reliable open-s
 1. **🤖 Just ask your DB** - Ask questions in plain English with DuckDB's MCP. Get immediate answers without writing complex queries.
 
 1. **🔍 End-to-end data lineage** - SQLMesh tracks transformations from raw to gold data. Understand exactly where metrics come from and debug easily.
+
+!!! warning
+
+    The project is very much in the pre-alpha stage. This is more of an experiment and is not meant for produciton workloads.
 
 ### Goals
 
