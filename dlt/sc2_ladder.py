@@ -3,6 +3,7 @@ from dlt.sources.helpers import requests
 import logging
 from typing import Iterator, Dict, Any
 import pendulum
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -167,11 +168,25 @@ def player_profiles(token: str) -> Iterator[Dict[str, Any]]:
 
 def run_pipeline():
     """Run the dlt pipeline to load StarCraft 2 data into DuckDB"""
-    
+
+    # Get the absolute path to the database file using pathlib
+    current_file = Path(__file__)
+    db_path = (current_file.parent / ".." / "db" / "db.db").resolve()
+
+    # Ensure the database directory exists
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Log the database path for debugging
+    logger.info(f"Using database path: {db_path}")
+
+    # Check if we can write to the directory
+    if not db_path.parent.is_dir():
+        raise RuntimeError(f"Database directory does not exist: {db_path.parent}")
+
     # Configure the pipeline
     pipeline = dlt.pipeline(
         pipeline_name="starcraft2_ladder",
-        destination=dlt.destinations.duckdb("../db/db.db"),
+        destination=dlt.destinations.duckdb(str(db_path)),
         dataset_name="sc2_raw"
     )
     
