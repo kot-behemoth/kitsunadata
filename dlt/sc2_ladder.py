@@ -6,26 +6,24 @@ import pendulum
 
 logger = logging.getLogger(__name__)
 
-# Configuration
-CLIENT_ID = "your_client_id"
-CLIENT_SECRET = "your_client_secret"
 BASE_URI = "https://eu.api.blizzard.com"
 REGION_ID = 2  # Europe
 
 # Create a configured requests client with retry logic
 client = requests.Client(
     request_timeout=30,
-    request_max_retries=4,
+    request_max_attempts=4,
     request_backoff_factor=2,
 )
 
 
-@dlt.source(name="starcraft2")
-def starcraft2_source():
+@dlt.source(name="battlenet")
+def battlenet(client_id: str = dlt.secrets.value,
+              client_secret: str = dlt.secrets.value):
     """Source for StarCraft 2 ladder data"""
     
     # Get access token
-    token = get_access_token()
+    token = get_access_token(client_id, client_secret)
     
     # Return both resources
     return [
@@ -34,12 +32,12 @@ def starcraft2_source():
     ]
 
 
-def get_access_token() -> str:
+def get_access_token(client_id: str, client_secret: str) -> str:
     """Obtain OAuth2 access token from Battle.net"""
     response = client.post(
         "https://oauth.battle.net/token",
         data={"grant_type": "client_credentials"},
-        auth=(CLIENT_ID, CLIENT_SECRET)
+        auth=(client_id, client_secret)
     )
     response.raise_for_status()
     return response.json()["access_token"]
@@ -173,12 +171,12 @@ def run_pipeline():
     # Configure the pipeline
     pipeline = dlt.pipeline(
         pipeline_name="starcraft2_ladder",
-        destination=dlt.destinations.duckdb("sc2data.db"),
-        dataset_name="sc2_data"
+        destination=dlt.destinations.duckdb("../db/db.db"),
+        dataset_name="sc2_raw"
     )
     
     # Run the pipeline
-    info = pipeline.run(starcraft2_source())
+    info = pipeline.run(battlenet())
     
     # Print load info
     print(info)

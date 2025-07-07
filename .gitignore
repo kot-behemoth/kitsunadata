@@ -181,4 +181,4 @@ cython_debug/
 /metabase-data/
 
 /docs/.venv
-/.dlt/secrets.toml
+/dlt/.dlt/secrets.toml
