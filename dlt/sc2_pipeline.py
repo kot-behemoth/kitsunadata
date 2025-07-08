@@ -1,7 +1,7 @@
 import dlt
 from dlt.sources.helpers import requests
 import logging
-from typing import Iterator, Dict, Any
+from typing import Iterator, Any
 import pendulum
 from pathlib import Path
 
@@ -49,7 +49,7 @@ def get_access_token(client_id: str, client_secret: str) -> str:
     write_disposition="replace",
     primary_key="id"
 )
-def grandmaster_ladder(token: str) -> Iterator[Dict[str, Any]]:
+def grandmaster_ladder(token: str) -> Iterator[dict[str, Any]]:
     """Fetch and yield grandmaster ladder data"""
     
     headers = {"Authorization": f"Bearer {token}"}
@@ -93,7 +93,7 @@ def grandmaster_ladder(token: str) -> Iterator[Dict[str, Any]]:
     write_disposition="replace",
     primary_key="id"
 )
-def player_profiles(token: str) -> Iterator[Dict[str, Any]]:
+def player_profiles(token: str) -> Iterator[dict[str, Any]]:
     """Fetch player profile metadata for all ladder players"""
     
     headers = {"Authorization": f"Bearer {token}"}
