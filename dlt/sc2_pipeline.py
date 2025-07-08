@@ -19,8 +19,8 @@ client = requests.Client(
 
 
 @dlt.source(name="battlenet")
-def battlenet(client_id: str = dlt.secrets.value,
-              client_secret: str = dlt.secrets.value):
+def sc2_ladder(client_id: str = dlt.secrets.value,
+               client_secret: str = dlt.secrets.value):
     """Source for StarCraft 2 ladder data"""
     
     # Get access token
@@ -45,7 +45,7 @@ def get_access_token(client_id: str, client_secret: str) -> str:
 
 
 @dlt.resource(
-    name="ladder",
+    name="raw_sc2_ladder",
     write_disposition="replace",
     primary_key="id"
 )
@@ -89,7 +89,7 @@ def grandmaster_ladder(token: str) -> Iterator[Dict[str, Any]]:
 
 
 @dlt.resource(
-    name="player_profiles",
+    name="raw_sc2_player_profiles",
     write_disposition="replace",
     primary_key="id"
 )
@@ -185,21 +185,21 @@ def run_pipeline():
 
     # Configure the pipeline
     pipeline = dlt.pipeline(
-        pipeline_name="starcraft2_ladder",
+        pipeline_name="sc2_ladder",
         destination=dlt.destinations.duckdb(str(db_path)),
-        dataset_name="sc2_raw"
+        dataset_name="bronze"
     )
     
     # Run the pipeline
-    info = pipeline.run(battlenet())
+    info = pipeline.run(sc2_ladder())
     
     # Print load info
     print(info)
     
     # Show the loaded data
     with pipeline.sql_client() as client:
-        ladder_count = client.execute_sql("SELECT COUNT(*) as count FROM ladder")[0][0]
-        profile_count = client.execute_sql("SELECT COUNT(*) as count FROM player_profiles")[0][0]
+        ladder_count = client.execute_sql("SELECT COUNT(*) as count FROM raw_sc2_ladder")[0][0]
+        profile_count = client.execute_sql("SELECT COUNT(*) as count FROM raw_sc2_player_profiles")[0][0]
         print(f"Loaded {ladder_count} ladder entries and {profile_count} player profiles")
         
         # Example query joining both tables
@@ -211,8 +211,8 @@ def run_pipeline():
                 l.mmr,
                 p.name,
                 p.profile_url
-            FROM ladder l
-            LEFT JOIN player_profiles p ON l.id = p.id
+            FROM raw_sc2_ladder l
+            LEFT JOIN raw_sc2_player_profiles p ON l.id = p.id
             ORDER BY l.points DESC
             LIMIT 5
         """)
