@@ -39,3 +39,8 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/kitsuna"]
+
+[tool.uv.workspace]
+members = [
+    "template/{{project_name}}",
+]
