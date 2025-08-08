@@ -1,9 +1,41 @@
 [project]
 name = "kitsuna"
 version = "0.1.0"
-description = "Add your description here"
+description = "Self-hosted one-person data platform"
 readme = "README.md"
-requires-python = ">=3.12.5"
-dependencies = [
-    "sqlmesh[web]>=0.180.0",
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Greg Goltsov", email = "greg@goltsov.info"},
 ]
+keywords = ["data", "platform", "duckdb", "sqlmesh", "metabase", "analytics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "copier>=9.4.1",
+    "click>=8.1.0",
+    "jinja2>=3.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/kitsuna"
+Documentation = "https://github.com/yourusername/kitsuna#readme"
+Repository = "https://github.com/yourusername/kitsuna"
+Issues = "https://github.com/yourusername/kitsuna/issues"
+
+[project.scripts]
+kitsuna = "kitsuna.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kitsuna"]
