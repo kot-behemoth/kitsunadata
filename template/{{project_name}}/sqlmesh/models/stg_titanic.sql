@@ -2,12 +2,14 @@ MODEL (
   name staging.stg_titanic,
   kind FULL,
   grain id
-)
+);
+
 WITH stg AS (
   SELECT
     -- Generate a unique ID for each passenger
     ROW_NUMBER() OVER () as id,
-    -- Parse the original columns
+
+    -- Rename the original columns
     "Survived" AS survived,
     "Pclass" AS passenger_class,
     "Name" AS passenger_name,
@@ -29,6 +31,7 @@ SELECT
   siblings_spouses_count,
   parents_children_count,
   fare,
+
   -- Add metadata fields
   CURRENT_TIMESTAMP() AS loaded_at
 FROM
